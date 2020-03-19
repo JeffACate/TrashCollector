@@ -48,6 +48,7 @@ namespace TrashCollector.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.Password)]
+
             public string Password { get; set; }
 
             [Display(Name = "Remember me?")]

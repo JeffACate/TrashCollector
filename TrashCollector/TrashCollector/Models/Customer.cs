@@ -11,9 +11,18 @@ namespace TrashCollector.Models
     {
         public int CustomerId { get; set; }
         public string Name { get; set; }
+        public double Bill { get; set; }
+        public double ZipCode { get; set; }
+        public DateTime ScheduledPickUp { get; set; }
 
+        // Role
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
+
+        // Scheduled Pickup
+        [ForeignKey("PickUp")]
+        public int PickUpId { get; set; }
+        public PickUp PickUp { get; set; }
     }
 }
