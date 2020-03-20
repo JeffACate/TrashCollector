@@ -13,10 +13,12 @@ namespace TrashCollector.Models
         public bool Paid { get; set; }
         public DateTime Date { get; set; }
 
+        //Customer associated with the pickup
         [ForeignKey("Customer")]
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
 
+        // Employee responsible for picking up
         [ForeignKey("Employee")]
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
