@@ -48,22 +48,22 @@ namespace TrashCollector.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6181efd0-dc16-458a-890f-92a2e36180c6",
-                            ConcurrencyStamp = "dd4be073-7b8c-40d4-9dd7-24d394bcc7df",
+                            Id = "fd2a1e40-6627-4383-9bd8-6f0df0d9ce85",
+                            ConcurrencyStamp = "59ebe2ab-3020-49b8-a877-020e2ae6fda6",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "3bd356dd-bec9-4b88-94f8-9d7ab74e0804",
-                            ConcurrencyStamp = "570bf59f-a618-4f96-91c9-a6d398423e77",
+                            Id = "80594a17-c6dd-41b9-b9b6-40439801ddfb",
+                            ConcurrencyStamp = "20249c0b-2462-4d04-a07b-ab28de7ee9e7",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "89121c3b-0b2b-4730-98dd-e022753ebf9a",
-                            ConcurrencyStamp = "4c8628ee-116f-446d-9f60-9dede5460010",
+                            Id = "c26a90f1-c1d9-4c14-ab38-7bb841222764",
+                            ConcurrencyStamp = "f5f384a3-5cb1-400f-9d4b-38a65c0b51da",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -251,11 +251,14 @@ namespace TrashCollector.Migrations
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<DateTime?>("MonthlyAddOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ScheduledPickUp")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("PickUpDay")
+                        .HasColumnType("int");
 
                     b.Property<double>("ZipCode")
                         .HasColumnType("float");

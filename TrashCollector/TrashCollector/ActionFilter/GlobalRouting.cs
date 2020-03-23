@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using TrashCollector.Data;
 
 namespace TrashCollector.ActionFilter
 {
     public class GlobalRouting : IActionFilter
     {
         private readonly ClaimsPrincipal _claimsPrincipal;
-        public GlobalRouting(ClaimsPrincipal claimsPrincipal)
+        public GlobalRouting(ClaimsPrincipal claimsPrincipal, ApplicationDbContext context)
         {
             _claimsPrincipal = claimsPrincipal;
         }

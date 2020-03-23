@@ -23,10 +23,10 @@
                 @Html.DisplayNameFor(model => model.ZipCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ScheduledPickUp)
+                @Html.DisplayNameFor(model => model.PickUpDay)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdentityUser)
+                @Html.DisplayNameFor(model => model.MonthlyAddOn)
             </th>
             <th></th>
         </tr>
@@ -44,10 +44,10 @@
                 @Html.DisplayFor(modelItem => item.ZipCode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ScheduledPickUp)
+                @Html.DisplayFor(modelItem => item.PickUpDay)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
+                @Html.DisplayFor(modelItem => item.MonthlyAddOn)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |

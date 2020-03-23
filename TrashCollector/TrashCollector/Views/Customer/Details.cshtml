@@ -5,41 +5,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>*Customer Home Page - IF customer Exists</h1>
 
 <div>
     <h4>Customer</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-4">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-8">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-4">
             @Html.DisplayNameFor(model => model.Bill)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-8">
             @Html.DisplayFor(model => model.Bill)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-4">
             @Html.DisplayNameFor(model => model.ZipCode)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-8">
             @Html.DisplayFor(model => model.ZipCode)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ScheduledPickUp)
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.PickUpDay)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ScheduledPickUp)
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.PickUpDay)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdentityUser)
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.MonthlyAddOn)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdentityUser.Id)
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.MonthlyAddOn)
         </dd>
     </dl>
 </div>
