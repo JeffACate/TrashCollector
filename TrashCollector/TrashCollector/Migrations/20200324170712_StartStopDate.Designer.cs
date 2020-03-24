@@ -10,8 +10,8 @@ using TrashCollector.Data;
 namespace TrashCollector.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200323165721_ConvertMonthlyAddOnToNullable")]
-    partial class ConvertMonthlyAddOnToNullable
+    [Migration("20200324170712_StartStopDate")]
+    partial class StartStopDate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,22 +50,22 @@ namespace TrashCollector.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "fd2a1e40-6627-4383-9bd8-6f0df0d9ce85",
-                            ConcurrencyStamp = "59ebe2ab-3020-49b8-a877-020e2ae6fda6",
+                            Id = "a1e6bdb8-a528-453b-8bbf-a698ed04fec9",
+                            ConcurrencyStamp = "3c0b44da-5f47-482e-bb4b-1a4ac247db21",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "80594a17-c6dd-41b9-b9b6-40439801ddfb",
-                            ConcurrencyStamp = "20249c0b-2462-4d04-a07b-ab28de7ee9e7",
+                            Id = "3a995320-2be5-4810-8010-23c55a653bf6",
+                            ConcurrencyStamp = "68dc7747-8ddb-4524-9e54-164e1aa72c7e",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "c26a90f1-c1d9-4c14-ab38-7bb841222764",
-                            ConcurrencyStamp = "f5f384a3-5cb1-400f-9d4b-38a65c0b51da",
+                            Id = "7f148091-871f-49f9-a485-9fe12b1d4078",
+                            ConcurrencyStamp = "1550ec90-9da8-4559-8b53-e880678ce1c6",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -250,6 +250,9 @@ namespace TrashCollector.Migrations
                     b.Property<double>("Bill")
                         .HasColumnType("float");
 
+                    b.Property<DateTime?>("EndServiceInterruption")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -261,6 +264,9 @@ namespace TrashCollector.Migrations
 
                     b.Property<int>("PickUpDay")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("StartServiceInterruption")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("ZipCode")
                         .HasColumnType("float");

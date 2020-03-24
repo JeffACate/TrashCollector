@@ -5,45 +5,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>*Customer Home Page - IF customer Exists</h1>
+<h1>Details</h1>
 
 <div>
-    <h4>Customer</h4>
+
+    <div class="row">
+        <h4 class="col-sm-2">Customer</h4>
+        <a class="col-sm-2" asp-action="Edit" asp-route-id="@Model.CustomerId">Edit</a>
+    </div>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-4">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-8">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-4">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Bill)
         </dt>
-        <dd class = "col-sm-8">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Bill)
         </dd>
-        <dt class = "col-sm-4">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.ZipCode)
         </dt>
-        <dd class = "col-sm-8">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.ZipCode)
         </dd>
-        <dt class = "col-sm-4">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.PickUpDay)
         </dt>
-        <dd class = "col-sm-8">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.PickUpDay)
         </dd>
-        <dt class = "col-sm-4">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.MonthlyAddOn)
         </dt>
-        <dd class = "col-sm-8">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.MonthlyAddOn)
         </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.StartServiceInterruption)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.StartServiceInterruption)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.EndServiceInterruption)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.EndServiceInterruption)
+        </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.CustomerId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>

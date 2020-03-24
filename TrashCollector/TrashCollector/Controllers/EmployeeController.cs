@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -20,23 +21,36 @@ namespace TrashCollector.Controllers
         }
 
         // GET: Employee
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var applicationDbContext = _context.Employees.Include(e => e.IdentityUser);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = _context.Employees.Where(e => e.IdentityUserId == userId).Single();
+            if (employee == null)
+            {
+                return RedirectToAction(nameof(Create));
+            }
+            return RedirectToAction(nameof(DisplayCustomers));
+        }
+        public async Task<IActionResult> DisplayCustomers()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int zip = _context.Employees.Where(e => e.IdentityUserId == userId).FirstOrDefault().ZipCode;
+            var applicationDbContext = _context.Customers.Where(c => c.ZipCode.Equals(zip));
             return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Employee/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
             var employee = await _context.Employees
                 .Include(e => e.IdentityUser)
-                .FirstOrDefaultAsync(m => m.EmployeeId == id);
+                .FirstOrDefaultAsync();
             if (employee == null)
             {
                 return NotFound();
@@ -48,7 +62,6 @@ namespace TrashCollector.Controllers
         // GET: Employee/Create
         public IActionResult Create()
         {
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
@@ -61,6 +74,8 @@ namespace TrashCollector.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                employee.IdentityUserId = userId;
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

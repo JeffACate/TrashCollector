@@ -25,7 +25,6 @@
             </div>
             <div class="form-group">
                 <label asp-for="PickUpDay" class="control-label"></label>
-                @*<input asp-for="PickUpDay" class="form-control" />*@
                 <select asp-for="PickUpDay" class="form-control">
                     <option value='Monday'>Monday</option>
                     <option value='Tuesday'>Tuesday</option>
@@ -37,8 +36,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="MonthlyAddOn" class="control-label"></label>
-                <input asp-for="MonthlyAddOn" class="form-control"/>
+                <input asp-for="MonthlyAddOn" class="form-control" />
                 <span asp-validation-for="MonthlyAddOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartServiceInterruption" class="control-label"></label>
+                <input asp-for="StartServiceInterruption" class="form-control" />
+                <span asp-validation-for="StartServiceInterruption" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndServiceInterruption" class="control-label"></label>
+                <input asp-for="EndServiceInterruption" class="form-control" />
+                <span asp-validation-for="EndServiceInterruption" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

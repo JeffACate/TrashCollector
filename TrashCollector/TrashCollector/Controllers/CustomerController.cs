@@ -30,7 +30,6 @@ namespace TrashCollector.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
-            int id = customer.CustomerId;
             return RedirectToAction("Details");
         }
 
@@ -43,7 +42,8 @@ namespace TrashCollector.Controllers
             //}
 
             var customer = _context.Customers
-                .Include(c => c.IdentityUser).FirstOrDefault();
+                .Include(c => c.IdentityUser)
+                .FirstOrDefault();
             if (customer == null)
             {
                 return NotFound();
@@ -112,6 +112,8 @@ namespace TrashCollector.Controllers
             {
                 try
                 {
+                    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    customer.IdentityUserId = userId;
                     _context.Update(customer);
                     await _context.SaveChangesAsync();
                 }

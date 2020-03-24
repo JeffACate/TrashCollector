@@ -21,8 +21,16 @@ namespace TrashCollector.Models
         public DayOfWeek PickUpDay { get; set; }
 
         [Display(Name = "Monthly Add-On"),DataType(DataType.Date)]
-        [DisplayFormat(NullDisplayText = "")]
+        [DisplayFormat(NullDisplayText = "", DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? MonthlyAddOn { get; set; }
+
+        [Display(Name = "Start Service Interruption"), DataType(DataType.Date)]
+        [DisplayFormat(NullDisplayText = "", DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime? StartServiceInterruption { get; set; }
+        
+        [Display(Name = "End Service Interruption Date"), DataType(DataType.Date)]
+        [DisplayFormat(NullDisplayText = "", DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime? EndServiceInterruption { get; set; }
 
 
         // Role

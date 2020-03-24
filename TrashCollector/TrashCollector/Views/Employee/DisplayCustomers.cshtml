@@ -1,23 +1,16 @@
 ﻿@model IEnumerable<TrashCollector.Models.Customer>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "EmployeeIndex";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h1>EmployeeIndex</h1>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Bill)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ZipCode)
@@ -29,7 +22,10 @@
                 @Html.DisplayNameFor(model => model.MonthlyAddOn)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MonthlyAddOn)
+                @Html.DisplayNameFor(model => model.StartServiceInterruption)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndServiceInterruption)
             </th>
             <th></th>
         </tr>
@@ -51,6 +47,15 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MonthlyAddOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartServiceInterruption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndServiceInterruption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |
