@@ -25,21 +25,69 @@ namespace TrashCollector.Controllers
         {
             var applicationDbContext = _context.Employees.Include(e => e.IdentityUser);
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var employee = _context.Employees.Where(e => e.IdentityUserId == userId).Single();
+            var employee = _context.Employees.Where(e => e.IdentityUserId == userId).SingleOrDefault();
             if (employee == null)
             {
                 return RedirectToAction(nameof(Create));
             }
             return RedirectToAction(nameof(DisplayCustomers));
         }
-        public async Task<IActionResult> DisplayCustomers()
+        public IActionResult DisplayCustomers()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             int zip = _context.Employees.Where(e => e.IdentityUserId == userId).FirstOrDefault().ZipCode;
-            var applicationDbContext = _context.Customers.Where(c => c.ZipCode.Equals(zip));
-            return View(await applicationDbContext.ToListAsync());
-        }
+            var customersInZip = _context.Customers.Where(c => c.ZipCode.Equals(zip));
+            List<Customer> applicationDbContext = new List<Customer>();
+            foreach (var customer in customersInZip)
+            {
+                if (customer.PickUpDay.Equals(DateTime.Today.DayOfWeek)) 
+                { 
+                    applicationDbContext.Add(customer); 
+                }
+            }
 
+            return View(applicationDbContext);
+        }
+        [HttpPost]
+        public IActionResult AddToPIckUp(IEnumerable<Customer> customers)
+        {
+            List<PickUp> pickUps = new List<PickUp>();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = _context.Employees.Where(e => e.IdentityUserId == userId).Single();
+            DateTime date = DateTime.Today;
+            foreach (Customer customer in customers)
+            {
+                if (customer.IsComplete == true)
+                {
+                    pickUps.Add(new PickUp() { Paid = false, Date = date, CustomerId = customer.CustomerId, EmployeeId = employee.EmployeeId });
+                }
+            }
+            foreach (PickUp pickUp in pickUps)
+            {
+                _context.PickUps.Add(pickUp);
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        // GET: customers by specific date - Possibly unnessicary
+        
+        public IActionResult GetDate()
+        {
+            return View();
+        }
+        //
+        public IActionResult DisplaySelectedCustomers(Employee employee)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int zip = _context.Employees.Where(e => e.IdentityUserId == userId).FirstOrDefault().ZipCode;
+            var customersInZip = _context.Customers.Where(c => c.ZipCode.Equals(zip));
+            List<Customer> applicationDbContext = new List<Customer>();
+            foreach (var customer in customersInZip)
+            {
+                if (customer.PickUpDay.Equals(employee.DayOfWeek)) { applicationDbContext.Add(customer); }
+            }
+
+            return View(applicationDbContext);
+        }
         // GET: Employee/Details/5
         public async Task<IActionResult> Details()
         {

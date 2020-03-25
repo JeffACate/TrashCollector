@@ -14,6 +14,7 @@ namespace TrashCollector.Models
         public string Name { get; set; }
         public double Bill { get; set; }
 
+
         [Display(Name = "Zip Code")]
         public double ZipCode { get; set; }
 
@@ -38,9 +39,7 @@ namespace TrashCollector.Models
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
 
-
-        //[NotMapped]
-        //public IEnumerable<DayOfWeek> days { get; set; }
-
+        [NotMapped]
+        public bool IsComplete { get; set; }
     }
 }

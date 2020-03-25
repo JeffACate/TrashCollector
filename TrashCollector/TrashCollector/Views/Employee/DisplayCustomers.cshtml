@@ -4,8 +4,10 @@
     ViewData["Title"] = "EmployeeIndex";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h1>EmployeeIndex</h1>
+    <div class="row">
+        <h1 class="col-sm-4">EmployeeIndex</h1>
+        <p class="col-sm-8"><a  asp-action="GetDate" asp-controller="Employee">View by date</a></p>
+    </div>
 <table class="table">
     <thead>
         <tr>
@@ -30,42 +32,43 @@
             <th>
                 @Html.DisplayNameFor(model => model.EndServiceInterruption)
             </th>
-            @*<th></th>*@
+            <th>
+                Picked Up
+            </th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Bill)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZipCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PickUpDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MonthlyAddOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartServiceInterruption)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndServiceInterruption)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
-            </td>
-            @*<td>
-                <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CustomerId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a>
-            </td>*@
-        </tr>
-}
-    </tbody>
+    <form asp-action="AddToPIckUp">
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Bill)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ZipCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PickUpDay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MonthlyAddOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartServiceInterruption)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndServiceInterruption)
+                    </td>
+                    <td>
+                        @*need more info about checkbox here*@
+                        @Html.CheckBoxFor(modelItem => item.IsComplete)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </form>
 </table>

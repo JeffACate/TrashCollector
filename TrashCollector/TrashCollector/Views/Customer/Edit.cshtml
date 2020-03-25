@@ -41,6 +41,16 @@
                 <span asp-validation-for="MonthlyAddOn" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="StartServiceInterruption" class="control-label"></label>
+                <input asp-for="StartServiceInterruption" class="form-control" />
+                <span asp-validation-for="StartServiceInterruption" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndServiceInterruption" class="control-label"></label>
+                <input asp-for="EndServiceInterruption" class="form-control" />
+                <span asp-validation-for="EndServiceInterruption" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
 
                 <a asp-action="Index">Back to Home</a>
